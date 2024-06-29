@@ -1,0 +1,24 @@
+{
+    "name": "sh/module-cmstransfer",
+    "description": "Add your description here",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "authors":[
+        {
+            "name":"Sorwar",
+            "email":"hussiansorwar@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Sh\\CmsTransfer\\": ""
+        }
+    }
+}
