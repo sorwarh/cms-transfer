@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="cms_block_columns">
+    <actionsColumn name="cms-transfer-actions" class="Sh\CmsTransfer\Ui\Component\Listing\Column\Actions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="cms_type" xsi:type="string">block</item>
+                <item name="urlPath" xsi:type="array">
+                    <item name="import" xsi:type="string">import/controller/action</item>
+                    <item name="export" xsi:type="string">import/controller/action</item>
+                </item>
+            </item>
+        </argument>
+        <settings>
+            <label translate="true">CMS Transfer</label>
+            <indexField>block_id</indexField>
+        </settings>
+    </actionsColumn>
+    </columns>
+</listing>

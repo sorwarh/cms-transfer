@@ -1,0 +1,55 @@
+<button id="export-block-button" type="button">Export Block</button>
+<input type="hidden" id="block_id" value="1" />
+<input type="hidden" id="cms_type" value="block" />
+
+<script type="text/javascript">
+require(['jquery', 'mage/url', 'Magento_Ui/js/modal/alert', 'mage/translate'], function($, urlBuilder, alert) {
+    $('#export-block-button').on('click', function() {
+        var blockId = $('#block_id').val();
+        var cmsType = $('#cms_type').val();
+        
+        $.ajax({
+            url: urlBuilder.build('sh_cmstransfer/export/cms'),
+            type: 'GET',
+            data: {
+                type: cmsType,
+                id: blockId
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert({
+                        title: $.mage.__('Success'),
+                        content: $.mage.__('Successfully exported the ' + cmsType + ' with ID #' + blockId + '.'),
+                        actions: {
+                            always: function() {
+                                // Trigger file download
+                                var iframe = $('<iframe/>').attr({
+                                    src: urlBuilder.build('sh_cmstransfer/export/cms', {type: cmsType, id: blockId}),
+                                    style: 'visibility:hidden;display:none'
+                                }).appendTo('body');
+                            }
+                        }
+                    });
+                } else {
+                    alert({
+                        title: $.mage.__('Error'),
+                        content: $.mage.__(response.message),
+                        actions: {
+                            always: function() {}
+                        }
+                    });
+                }
+            },
+            error: function() {
+                alert({
+                    title: $.mage.__('Error'),
+                    content: $.mage.__('There was an error processing the request.'),
+                    actions: {
+                        always: function() {}
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
